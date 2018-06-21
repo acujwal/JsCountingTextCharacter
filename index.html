@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+<body>
+
+<div>
+
+<form role="form" action="" method="post" onsubmit="return validate(this);">
+    <label>Create New Post (141 char):</label>
+    <textarea name="posttext" id="posttext" class="form-control" rows="2" placeholder= "Express yourself!" maxlength="140"></textarea>
+    <div id="textarea_feedback"></div>
+    <input type="submit" value="Submit" id="submit"/>
+    <input type="reset" value="Clear"/>
+</form>
+</div>
+
+<script>
+    $(document).ready(function() {
+        var text_max = 140;
+        $('#textarea_feedback').html(text_max + ' characters remaining');
+
+        $('#posttext').keyup(function() {
+            var text_length = $('#posttext').val().length;
+            var text_remaining = text_max - text_length;
+
+            $('#textarea_feedback').html(text_remaining + ' characters remaining');
+        });
+    });
+
+    function validate(form) {
+        valid = true;
+        if ($('#posttext').val()==""){
+            alert("You may not submit an empty post.");
+            valid = false;
+        }
+        return valid;
+    }
+
+
+</script>
+</body>
+</html>
